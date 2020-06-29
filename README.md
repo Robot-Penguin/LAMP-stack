@@ -6,7 +6,7 @@ CentOS 6.8 <br />
 CentOS 7.0 <br />
 
 # Software Version
-Apache : 
-MySQL : 
-PHP : 
-PhpMyAdmin :
+Apache : <br />
+MySQL : <br />
+PHP : <br />
+PhpMyAdmin : <br />
