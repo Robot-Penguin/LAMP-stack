@@ -2,8 +2,13 @@
 
 # LAMP INSTALLATION CENTOS 6
 
-test(){
-    echo "THIS IS A TEST"
+test1(){
+    echo "INSTALL CENTOS6"
+
+}
+
+test2(){
+    echo "INSTALL CENTOS7"
 
 }
 
@@ -56,15 +61,15 @@ centos_7(){
     # ERROR CONFIGURATION
     # sudo mkdir /var/log/php
     # sudo chown apache /var/log/php
-
+    echo "TEST"
 
     # RESTART APACHE
 }
 
 # GET SYSTEM INFO
 hostname=$(hostname)
-os=$(cat /etc/centos-release)
-
+#os=$(cat /etc/centos-release)
+os="centos6.8"
 echo $hostname
 echo $os
 
@@ -72,7 +77,11 @@ while true; do
     echo -e "\033[1;33m##### LAMP STACK INSTALLATION #####\x1B[0m"
     read -p "Do you want to continue? Type Y to continue Q to quit: " choice
     case $choice in 
-        y|Y) test
+        y|Y) if [[ $os == centos6.8 ]]; then
+                test1
+                elif [[ $os == centos7.0 ]]; then
+                test2
+            fi
         exit
         ;;
         q|Q) echo "Installation Terminated!"
