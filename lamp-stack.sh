@@ -35,10 +35,38 @@ centos_6(){
     # sudo mkdir /var/log/php
     # sudo chown apache /var/log/php
 
-
     # RESTART APACHE
     sudo service httpd restart
 }
+
+centos_7(){
+    # APACHE INSTALLATION
+
+
+    # CONFIGURE IPTABLES
+
+
+    # MYSQL INSTALLATION
+
+
+    # PHP INSTALLATION & CONFIGURATION
+ 
+    # CONFIGURE PHP ERROR MESSAGE AND LOGS
+
+    # ERROR CONFIGURATION
+    # sudo mkdir /var/log/php
+    # sudo chown apache /var/log/php
+
+
+    # RESTART APACHE
+}
+
+# GET SYSTEM INFO
+hostname=$(hostname)
+os=$(cat /etc/centos-release)
+
+echo $hostname
+echo $os
 
 while true; do
     echo -e "\033[1;33m##### LAMP STACK INSTALLATION #####\x1B[0m"
@@ -54,9 +82,6 @@ while true; do
 done
 
 # sudo yum update all -y
-
-
-
 
 # echo "Successfully installed:"
 #    echo Apache Version
