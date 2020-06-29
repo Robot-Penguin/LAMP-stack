@@ -2,15 +2,15 @@
 
 # LAMP INSTALLATION CENTOS 6
 
-test1(){
-    echo "INSTALL CENTOS6"
+#test1(){
+#    echo "INSTALL CENTOS6"
 
-}
+#}
 
-test2(){
-    echo "INSTALL CENTOS7"
+#test2(){
+#    echo "INSTALL CENTOS7"
 
-}
+#}
 
 centos_6(){
     # APACHE INSTALLATION
@@ -28,11 +28,11 @@ centos_6(){
     sudo service mysqld start
 
     # PHP INSTALLATION & CONFIGURATION
-    yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-    yum install http://rpms.remirepo.net/enterprise/remi-release-6.rpm
-    yum install yum-utils
-    yum-config-manager --enable remi-php72 
-    yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo 
+    yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm -y
+    yum install http://rpms.remirepo.net/enterprise/remi-release-6.rpm -y 
+    yum install yum-utils -y 
+    yum-config-manager --enable remi-php72 -y  
+    yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo -y  
 
     # CONFIGURE PHP ERROR MESSAGE AND LOGS
 
@@ -78,7 +78,7 @@ while true; do
     read -p "Do you want to continue? Type Y to continue Q to quit: " choice
     case $choice in 
         y|Y) if [[ $os == centos6.8 ]]; then
-                test1
+                centos_6
                 elif [[ $os == centos7.0 ]]; then
                 test2
             fi
