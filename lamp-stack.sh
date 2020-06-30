@@ -13,6 +13,8 @@
 #}
 
 centos_6(){
+    # sudo yum update all -y
+
     # APACHE INSTALLATION
     sudo yum install httpd -y
     sudo service httpd start
@@ -45,6 +47,8 @@ centos_6(){
 }
 
 centos_7(){
+    # sudo yum update all -y
+
     # APACHE INSTALLATION
 
 
@@ -66,10 +70,19 @@ centos_7(){
     # RESTART APACHE
 }
 
+system_info(){
+    echo -e "\033[1;33m##### Successfully installed #####\x1B[0m"
+    echo -e "Apache :" $(httpd -v)
+    echo -e "Mysql :" $(mysqld --version)
+    echo -e "PHP :" $(php --version)
+#   echo phpmyadmin
+
+}
+
 # GET SYSTEM INFO
 hostname=$(hostname)
 #os=$(cat /etc/centos-release)
-os="centos6.8"
+os="centos7.0"
 echo $hostname
 echo $os
 
@@ -79,8 +92,10 @@ while true; do
     case $choice in 
         y|Y) if [[ $os == centos6.8 ]]; then
                 centos_6
+                system_info
                 elif [[ $os == centos7.0 ]]; then
-                test2
+                centos_7
+                system_info    
             fi
         exit
         ;;
@@ -89,11 +104,3 @@ while true; do
         ;;
     esac
 done
-
-# sudo yum update all -y
-
-# echo "Successfully installed:"
-#    echo Apache Version
-#    echo Mysql Version
-#    echo PHP Version
-#    echo phpmyadmin
