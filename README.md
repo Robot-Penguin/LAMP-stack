@@ -1,5 +1,5 @@
 # Description
-Script for installing and configuring Linux, Apache, MySQL, PHP (LAMP).
+Script for configuring Linux, Apache, MySQL, PHP (LAMP) Server.
 
 # Supported System
 CentOS 6.8 <br />
