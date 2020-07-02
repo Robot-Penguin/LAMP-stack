@@ -13,21 +13,22 @@
 #}
 
 centos_6(){
-    # sudo yum update all -y
+    sudo yum update all -y
 
     # APACHE INSTALLATION
     sudo yum install httpd -y
     sudo service httpd start
-    sudo chkconfig httpd
+    sudo chkconfig httpd on
 
     # CONFIGURE IPTABLES
-    # iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-    service iptables stop
+    iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+    service iptables save
+    service iptables restart
 
     # MYSQL INSTALLATION
     sudo yum install mysql-server mysql -y
-    sudo chkconfig mysqld on
     sudo service mysqld start
+    sudo chkconfig mysqld on
 
     # PHP INSTALLATION & CONFIGURATION
     yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm -y
@@ -69,19 +70,17 @@ centos_7(){
     # RESTART APACHE
 }
 
-system_info(){
-    echo -e "\033[1;33m##### Successfully installed #####\x1B[0m"
-    echo -e "Apache :" $(httpd -v)
-    echo -e "Mysql :" $(mysqld --version)
-    echo -e "PHP :" $(php --version)
-#   echo phpmyadmin
-
-}
+#system_info(){
+#    echo -e "\033[1;33m##### Successfully installed #####\x1B[0m"
+#    echo "Apache :" $(httpd -v)
+#    echo "Mysql :" $(mysqld --version)
+#    echo "PHP :" $(php --version)
+#}
 
 # GET SYSTEM INFO
 hostname=$(hostname)
 #os=$(cat /etc/centos-release)
-os="centos7.0"
+os="centos6.8"
 echo $hostname
 echo $os
 
