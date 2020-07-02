@@ -36,11 +36,10 @@ centos_6(){
     yum-config-manager --enable remi-php72 -y  
     yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo -y  
 
-    # CONFIGURE PHP ERROR MESSAGE AND LOGS
-
-    # ERROR CONFIGURATION
-    # sudo mkdir /var/log/php
-    # sudo chown apache /var/log/php
+    # CONFIGURE PHP ERROR LOG
+    sudo sed 's/;error_log = php_errors.log/error_log = \/var\/log\/php\/error.log/' /etc/php.ini
+    sudo mkdir /var/log/php
+    sudo chown apache /var/log/php
 
     # RESTART APACHE
     sudo service httpd restart
