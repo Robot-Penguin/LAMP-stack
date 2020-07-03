@@ -2,10 +2,10 @@
 
 # LAMP INSTALLATION CENTOS 6
 
-#test1(){
-#    echo "INSTALL CENTOS6"
-
-#}
+system_info(){
+    echo "Hostname : $hostname"
+    echo "Operationg System : $os"
+}
 
 #test2(){
 #    echo "INSTALL CENTOS7"
@@ -13,6 +13,8 @@
 #}
 
 centos_6(){
+    echo -e "\033[1;33m##### BEGIN INSTALLATION #####\x1B[0m"
+    # YUM UPDATE
     sudo yum update all -y
 
     # APACHE INSTALLATION
@@ -79,28 +81,30 @@ centos_7(){
     # RESTART APACHE
 }
 
-#system_info(){
-#    echo -e "\033[1;33m##### Successfully installed #####\x1B[0m"
-#    echo "Apache :" $(httpd -v)
-#    echo "Mysql :" $(mysqld --version)
-#    echo "PHP :" $(php --version)
-#}
+    
+install_info(){
+    # PRINT INSTALLED VERSIONS
+    echo -e "\033[1;33m##### Successfully installed #####\x1B[0m"
+    echo "Apache :" $(httpd -v | sed -n '1p' | awk '{ print $3 }')
+    echo "Mysql :" $(mysql --version | sed -n '1p' | awk '{ print $1, $2, $3 }')
+    echo "PHP :" $(php --version | sed -n '1p' | awk '{ print $1, $2 }')
+}
 
-# GET SYSTEM INFO
+# GET SYSTEM INFORMATION
 hostname=$(hostname)
-#os=$(cat /etc/centos-release)
-os="centos6.8"
-echo $hostname
-echo $os
+os=$(cat /etc/centos-release | awk '{ print $1, $(NF-1)}')
 
 while true; do
     echo -e "\033[1;33m##### LAMP STACK INSTALLATION #####\x1B[0m"
     read -p "Do you want to continue? Type Y to continue Q to quit: " choice
+    echo -e "\033[1;33m##### SYSTEM INFORMATION #####\x1B[0m"
     case $choice in 
-        y|Y) if [[ $os == centos6.8 ]]; then
-                centos_6
-                system_info
-                elif [[ $os == centos7.0 ]]; then
+        y|Y)    if [[ $(echo $os | awk '{ print $(NF)}') =~ ^6 ]]; then 
+                    #echo "centos 6"
+                    system_info
+                    centos_6
+                    install_info
+                elif [[ $(echo $os | awk '{ print $(NF)}') =~ ^7 ]]; then
                 centos_7
                 system_info    
             fi
