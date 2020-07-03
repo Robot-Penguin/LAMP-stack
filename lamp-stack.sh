@@ -29,6 +29,15 @@ centos_6(){
     sudo yum install mysql-server mysql -y
     sudo service mysqld start
     sudo chkconfig mysqld on
+    # SECURING MYSQL-SERVER
+    myql --user=root <<_EOF_
+    UPDATE mysql.user SET Password=PASSWORD('ENTER_YOUR_DESIRED_PASSWORD_HERE') WHERE User='root';
+    DELETE FROM mysql.user WHERE User='';
+    DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+    DROP DATABASE IF EXISTS test;
+    DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+    FLUSH PRIVILEGES;
+_EOF_
 
     # PHP INSTALLATION & CONFIGURATION
     yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm -y
