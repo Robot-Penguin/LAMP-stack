@@ -1,6 +1,6 @@
 # Description
 Script for configuring Linux, Apache, MySQL, PHP (LAMP) stack.<br />
-Note: No enhance Security configuration or Server hardening provided in this script.
+Note: No additional Security or Server hardening implemented in this script.
 
 # Supported System
 CentOS 6.8 <br />
