@@ -79,6 +79,7 @@ centos_7(){
     sudo firewall-cmd --reload
 
     # MYSQL INSTALLATION
+    echo -e "\033[1;33mINSTALLING MYSQL SERVER...\x1B[0m"
     wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
     sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
     yum update -y
@@ -137,7 +138,7 @@ while true; do
             fi
         exit
         ;;
-        q|Q) echo "Installation Terminated!"
+        q|Q) echo -e "\033[1;31mInstallation Terminated\x1B[0m"
         exit
         ;;
     esac
