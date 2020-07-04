@@ -33,7 +33,7 @@ centos_6(){
     sudo service mysqld start
     sudo chkconfig mysqld on
     # SECURING MYSQL-SERVER
-    myql --user=root <<_EOF_
+    mysql --user=root <<_EOF_
     UPDATE mysql.user SET Password=PASSWORD('ENTER_YOUR_DESIRED_PASSWORD_HERE') WHERE User='root';
     DELETE FROM mysql.user WHERE User='';
     DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
@@ -68,7 +68,7 @@ centos_7(){
     sudo yum update -y
 
     # APACHE INSTALLATION
-    sudo yum install httpd -yum
+    sudo yum install httpd -y
     sudo systemctl start httpd.service
     sudo enable httpd.service
 
@@ -84,7 +84,7 @@ centos_7(){
     yum update -y
     sudo yum install mysql-server -y
     sudo systemctl start mysqld
-    myql --user=root <<_EOF_
+    mysql --user=root <<_EOF_
     UPDATE mysql.user SET Password=PASSWORD('ENTER_YOUR_DESIRED_PASSWORD_HERE') WHERE User='root';
     DELETE FROM mysql.user WHERE User='';
     DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
@@ -95,11 +95,11 @@ _EOF_
 
     # PHP INSTALLATION & CONFIGURATION
     echo -e "\033[1;33mINSTALLING PHP...\x1B[0m"
-    yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm -y
-    yum install http://rpms.remirepo.net/enterprise/remi-release-6.rpm -y 
-    yum install yum-utils -y 
-    yum-config-manager --enable remi-php72 -y  
-    yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo -y  
+    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+    sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y 
+    sudo yum install yum-utils -y 
+    sudo yum-config-manager --enable remi-php72 -y  
+    sudo yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo -y  
 
     # CONFIGURE PHP ERROR LOG
     sudo sed -i.$(date +%F-%T) 's/;error_log = php_errors.log/error_log = \/var\/log\/php\/error.log/' /etc/php.ini
