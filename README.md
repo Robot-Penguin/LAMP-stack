@@ -7,6 +7,6 @@ CentOS 6.8 <br />
 CentOS 7.0 <br />
 
 # Software Version
-Apache : <br />
-MySQL : <br />
-PHP : <br />
+Apache : Apache/2.4.6<br /> 
+MySQL : mysql  Ver 14.14 Distrib 5.6.48 <br /> 
+PHP : PHP 7.2.31 <br />  
